@@ -1,5 +1,5 @@
 import {createStore, combineReducers} from 'redux';
-import imagesReducer from '../reducers/countReducer';
+import imagesReducer from '../reducers/imagesReducer';
 
 const rootReducer = combineReducers({images: imagesReducer});
 const configureStore = () => {
