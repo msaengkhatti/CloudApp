@@ -18,6 +18,9 @@ import {
   Image,
 } from 'react-native';
 
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+
 import {
   Header,
   LearnMoreLinks,

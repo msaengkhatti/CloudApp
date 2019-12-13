@@ -1,8 +1,7 @@
 import React from 'react';
 import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
-
-let DEFAULT_IMAGE = require('../resources/images/image-placeholder-300x210.png');
+import {DEFAULT_IMAGE} from '../constants';
 
 const ImageUploarder = ({onLoad}) => {
   const openImagePicker = () => {
