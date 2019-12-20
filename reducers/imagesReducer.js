@@ -1,7 +1,7 @@
 import {ACTION} from '../constants';
 
 const initialState = {
-  images: [],
+  imagesUri: [],
 };
 
 const imagesReducer = (state = initialState, action) => {
@@ -9,7 +9,7 @@ const imagesReducer = (state = initialState, action) => {
     case ACTION.ADD_IMAGES:
       return {
         ...state,
-        images: [...images, ...action.images],
+        imagesUri: [...state.imagesUri, ...action.images],
       };
     default:
       return state;

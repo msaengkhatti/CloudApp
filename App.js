@@ -1,53 +1,25 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React from 'react';
 import {
-  SafeAreaView,
   StyleSheet,
-  ScrollView,
   View,
-  Text,
   StatusBar,
-  TouchableOpacity,
   Image,
 } from 'react-native';
 
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
 import ImageUploader from './components/ImageUploader';
+import {addImages} from './actions/imageUploader';
 
 class App extends React.Component {
-  state = {
-    source: null,
-    sometext: '',
-  };
-
-  componentWillMount() {}
-
-  onLoad = source => {
-    this.setState({
-      source: source,
-    });
+  onLoad = res => {
+    this.props.addImages([res.uri]);
   };
 
   renderImage = () => {
-    return this.state.source ? (
+    return this.props.source ? (
       <View style={styles.container}>
-        <Image source={this.state.source} style={styles.image} />
+        <Image source={{uri: this.props.source}} style={styles.image} />
       </View>
     ) : (
       <ImageUploader onLoad={this.onLoad} />
@@ -63,6 +35,21 @@ class App extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  if (state.images && state.images.imagesUri[0])
+    return ({source: state.images.imagesUri[0]});
+   else return {source: null}
+}
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(
+    {
+      addImages,
+    },
+    dispatch,
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -81,4 +68,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default connect(mapStateToProps,mapDispatchToProps)(App);

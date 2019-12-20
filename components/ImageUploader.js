@@ -3,7 +3,7 @@ import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 import {DEFAULT_IMAGE} from '../constants';
 
-const ImageUploarder = ({onLoad}) => {
+export default ImageUploarder = ({onLoad}) => {
   const openImagePicker = () => {
     ImagePicker.openPicker({
       multiple: true,
@@ -36,5 +36,3 @@ const ImageUploarder = ({onLoad}) => {
     </View>
   );
 };
-
-export default ImageUploarder;
