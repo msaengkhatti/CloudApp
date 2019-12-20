@@ -1,15 +1,11 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  StatusBar,
-  Image,
-} from 'react-native';
+import {StyleSheet, View, StatusBar, Image} from 'react-native';
 
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import ImageUploader from './components/ImageUploader';
 import {addImages} from './actions/imageUploader';
+import ImageGallery from './components/ImageGallery';
 
 class App extends React.Component {
   onLoad = res => {
@@ -30,6 +26,7 @@ class App extends React.Component {
     return (
       <>
         <StatusBar barStyle="dark-content" />
+        <ImageGallery />
         {this.renderImage()}
       </>
     );
@@ -38,9 +35,9 @@ class App extends React.Component {
 
 const mapStateToProps = state => {
   if (state.images && state.images.imagesUri[0])
-    return ({source: state.images.imagesUri[0]});
-   else return {source: null}
-}
+    return {source: state.images.imagesUri[0]};
+  else return {source: null};
+};
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
@@ -68,4 +65,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default connect(mapStateToProps,mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
