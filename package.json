@@ -7,12 +7,15 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "clean:cache": "watchman watch-del-all & rm -rf /tmp/metro-*"
   },
   "dependencies": {
     "react": "16.9.0",
     "react-native": "0.61.5",
+    "react-native-elements": "^1.2.7",
     "react-native-image-crop-picker": "^0.26.1",
+    "react-native-vector-icons": "^6.6.0",
     "react-redux": "^7.1.3",
     "redux": "^4.0.5"
   },
