@@ -8,7 +8,8 @@ export default function NavigationBar({}) {
       flexDirection: 'row',
       justifyContent: 'space-around',
       backgroundColor: 'black',
-      padding: 20,
+      paddingTop: 10,
+      paddingBottom: 30,
     },
   });
 

@@ -1,11 +1,13 @@
 import React from 'react';
-import {StyleSheet, View, StatusBar, Image, ScrollView} from 'react-native';
+import {StyleSheet, View, Image, ScrollView, SafeAreaView} from 'react-native';
+import AppStatusBar from '../AppStatusBar';
 
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import ImageUploader from '../ImageUploader';
 import {addImages} from '../../actions/imageUploader';
 import NavigationBar from '../NavigationBar';
+import PhotoGallery from '../PhotoGallery';
 
 class Home extends React.Component {
   onLoad = res => {
@@ -13,20 +15,75 @@ class Home extends React.Component {
   };
 
   renderImage = () => {
+    const images = this.props.source
+      ? [
+          {
+            uri: this.props.source,
+          },
+          {
+            uri: this.props.source,
+          },
+          {
+            uri: this.props.source,
+          },
+          {
+            uri: this.props.source,
+          },
+          {
+            uri: this.props.source,
+          },
+          {
+            uri: this.props.source,
+          },
+          {
+            uri: this.props.source,
+          },
+          {
+            uri: this.props.source,
+          },
+          {
+            uri: this.props.source,
+          },
+          {
+            uri: this.props.source,
+          },
+          {
+            uri: this.props.source,
+          },
+          {
+            uri: this.props.source,
+          },
+          {
+            uri: this.props.source,
+          },
+          {
+            uri: this.props.source,
+          },
+          {
+            uri: this.props.source,
+          },
+        ]
+      : [];
     return this.props.source ? (
-      <View style={styles.container}>
-        <Image source={{uri: this.props.source}} style={styles.image} />
-      </View>
+      <ScrollView>
+        <View style={styles.container}>
+          <PhotoGallery images={images} />
+        </View>
+      </ScrollView>
     ) : (
-      <ImageUploader onLoad={this.onLoad} />
+      <View style={styles.container}>
+        <ImageUploader onLoad={this.onLoad} />
+      </View>
     );
   };
 
   render() {
     return (
       <View style={{flex: 1}}>
-        {/* <StatusBar barStyle="dark-content" /> */}
-        <ScrollView>{this.renderImage()}</ScrollView>
+        <SafeAreaView style={{flex: 1}}>
+          {/* <AppStatusBar /> */}
+          {this.renderImage()}
+        </SafeAreaView>
         <NavigationBar />
       </View>
     );
@@ -54,15 +111,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flex: 1,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
   },
   image: {
     width: 400,
     height: 400,
-    justifyContent: 'center',
   },
 });
 

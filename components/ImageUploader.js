@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
+import {Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 import {DEFAULT_IMAGE} from '../constants';
 
@@ -13,26 +13,15 @@ export default ImageUploarder = ({onLoad}) => {
     });
   };
   const styles = StyleSheet.create({
-    container: {
-      justifyContent: 'center',
-      alignItems: 'center',
-      flex: 1,
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-    },
-    image: {
+    text: {
       justifyContent: 'center',
     },
   });
 
   return (
-    <View style={styles.container}>
-      <TouchableOpacity onPress={openImagePicker}>
-        <Image source={DEFAULT_IMAGE} style={styles.image} />
-        <Text>Add Image Now</Text>
-      </TouchableOpacity>
-    </View>
+    <TouchableOpacity onPress={openImagePicker}>
+      <Image source={DEFAULT_IMAGE} />
+      <Text style={styles.text}>Add Image Now</Text>
+    </TouchableOpacity>
   );
 };
