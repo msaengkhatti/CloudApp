@@ -3,68 +3,20 @@ import {StyleSheet, View, Image, ScrollView, SafeAreaView} from 'react-native';
 import AppStatusBar from '../AppStatusBar';
 
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 import ImageUploader from '../ImageUploader';
-import {addImages} from '../../actions/imageUploader';
+import {addImages} from '../../actions/actions';
 import NavigationBar from '../NavigationBar';
 import PhotoGallery from '../PhotoGallery';
+import {ACTION} from '../../constants';
 
 class Home extends React.Component {
-  onLoad = res => {
-    this.props.addImages([res.uri]);
+  onLoad = images => {
+    this.props.addImages(ACTION.ADD_IMAGES, images);
   };
 
   renderImage = () => {
-    const images = this.props.source
-      ? [
-          {
-            uri: this.props.source,
-          },
-          {
-            uri: this.props.source,
-          },
-          {
-            uri: this.props.source,
-          },
-          {
-            uri: this.props.source,
-          },
-          {
-            uri: this.props.source,
-          },
-          {
-            uri: this.props.source,
-          },
-          {
-            uri: this.props.source,
-          },
-          {
-            uri: this.props.source,
-          },
-          {
-            uri: this.props.source,
-          },
-          {
-            uri: this.props.source,
-          },
-          {
-            uri: this.props.source,
-          },
-          {
-            uri: this.props.source,
-          },
-          {
-            uri: this.props.source,
-          },
-          {
-            uri: this.props.source,
-          },
-          {
-            uri: this.props.source,
-          },
-        ]
-      : [];
-    return this.props.source ? (
+    const images = this.props.source;
+    return this.props.source.length > 0 ? (
       <ScrollView>
         <View style={styles.container}>
           <PhotoGallery images={images} />
@@ -91,19 +43,12 @@ class Home extends React.Component {
 }
 
 const mapStateToProps = state => {
-  if (state.images && state.images.imagesUri[0])
-    return {source: state.images.imagesUri[0]};
-  else return {source: null};
+  if (state.imagesStore && state.imagesStore.images) {
+    return {source: state.imagesStore.images};
+  } else return {source: null};
 };
 
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators(
-    {
-      addImages,
-    },
-    dispatch,
-  );
-};
+const mapDispatchToProps = {addImages};
 
 const styles = StyleSheet.create({
   scrollViewContent: {},

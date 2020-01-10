@@ -26,7 +26,7 @@ class PhotoGallery extends PureComponent {
 
         {images.map(image => (
           <View style={styles.imageWraper}>
-            <PhotoTile source={image} ratio={3.1} />
+            <PhotoTile source={{uri: image.path}} ratio={3.1} />
           </View>
         ))}
       </View>
